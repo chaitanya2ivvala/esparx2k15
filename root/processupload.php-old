@@ -1,0 +1,102 @@
+<?php
+session_start();
+if(isset($_FILES["FileInput"]) && $_FILES["FileInput"]["error"]== UPLOAD_ERR_OK)
+{
+	//print_r($_POST); exit;
+	############ Edit settings ##############
+	$UploadDirectory	= 'uploads/'.$_POST['type'].'/'; //specify upload directory ends with / (slash)
+	##########################################
+	
+	/*
+	Note : You will run into errors or blank page if "memory_limit" or "upload_max_filesize" is set to low in "php.ini". 
+	Open "php.ini" file, and search for "memory_limit" or "upload_max_filesize" limit 
+	and set them adequately, also check "post_max_size".
+	*/
+	
+	//check if this is an ajax request
+	if (!isset($_SERVER['HTTP_X_REQUESTED_WITH'])){
+		die();
+	}
+	
+	
+	//Is file size is less than allowed size.
+	if ($_FILES["FileInput"]["size"] > 5242880) {
+		die("File size is too big!");
+	}
+	
+	//allowed file type Server side check
+	/*switch(strtolower($_FILES['FileInput']['type']))
+		{
+			//allowed file types
+			case 'image/png': 
+			case 'image/gif': 
+			case 'image/jpeg': 
+			case 'image/pjpeg':
+			case 'text/plain':
+			case 'text/html': //html file
+			case 'application/x-zip-compressed':
+			case 'application/pdf':
+			case 'application/msword':
+			case 'application/vnd.ms-excel':
+			case 'video/mp4':
+				break;
+			default:
+				die('Unsupported File!'); //output error
+	}*/
+	
+	$File_Name          = strtolower($_FILES['FileInput']['name']);
+	$File_Ext           = substr($File_Name, strrpos($File_Name, '.')); //get file extention
+	$Random_Number      = rand(0, 9999999999); //Random number to be added to name.
+	$NewFileName 		= $Random_Number.$File_Ext; //new file name
+	
+	if(move_uploaded_file($_FILES['FileInput']['tmp_name'], $UploadDirectory.$NewFileName ))
+	   {
+		
+		include("php_includes/connect.php");
+		$e = mysqli_real_escape_string($db_conx, $_POST['email']);
+		
+		$sql = "select Rexparxid from users where id='".$_SESSION['userid']."'"; 
+		$query = mysqli_query($db_conx, $sql);
+		$row=mysqli_fetch_array($query,MYSQLI_ASSOC);
+		
+		
+		$sql1 = "select filename from usersfiles  where eid='".$row['Rexparxid']."' AND title='".$_POST['type']."'"; 
+		$query1 = mysqli_query($db_conx, $sql1);
+		$numrows = mysqli_num_rows($query1);
+		if($numrows > 0)
+		{
+		$sql = "update usersfiles set filename='".$NewFileName."' where eid='".$row['Rexparxid']."' AND title='".$_POST['type']."'"; 
+		$query = mysqli_query($db_conx, $sql);
+		}
+		else
+		{
+		$sql = "insert into usersfiles set eid='".$row['Rexparxid']."',filename='".$NewFileName."',title='".$_POST['type']."',dateon='".strtotime('now')."'"; 
+		$query = mysqli_query($db_conx, $sql);
+		}
+		
+		
+		
+		if($_POST['type']=='Poster')
+		{
+		$tblname='tbl_poster';	
+		}
+		for($i=0;$i< 2;$i++)
+		{
+		echo $sql = "insert into $tblname set eid='".$row['Rexparxid']."',fname='".$_POST['fname'][$i]."',lname='".$_POST['lname'][$i]."',college='".$_POST['college'][$i]."', gender='".$_POST['gender'][$i]."', year='".$_POST['year'][$i]."', phone='".$_POST['phone'][$i]."', email='".$_POST['email'][$i]."',dateon='".strtotime('now')."'"; 
+		$query = mysqli_query($db_conx, $sql);	
+		}
+		
+		die('Success! Data saved successfully.');
+		
+		
+		
+		
+	}else{
+		die('error uploading File!');
+	}
+	
+}
+else
+{
+	die('Something wrong with upload! Is "upload_max_filesize" set correctly?');
+}

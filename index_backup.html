@@ -1,0 +1,912 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Esparx2k16 | Home ::</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--<link href='http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,800' rel='stylesheet' type='text/css'>-->
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="js/jquery-1.9.1.min.js"></script>
+<!--hover-effect-->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="js/hover_pack.js"></script>
+<script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		
+		var filterList = {
+		
+			init: function () {
+			
+				// MixItUp plugin
+				// http://mixitup.io
+				$('#portfoliolist').mixitup({
+					targetSelector: '.portfolio',
+					filterSelector: '.filter',
+					effects: ['fade'],
+					easing: 'snap',
+					// call the hover effect
+					onMixEnd: filterList.hoverEffect()
+				});				
+			
+			},
+			
+			hoverEffect: function () {
+			
+				// Simple parallax effect
+				$('#portfoliolist .portfolio').hover(
+					function () {
+						$(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
+						$(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');				
+					},
+					function () {
+						$(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
+						$(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');								
+					}		
+				);				
+			
+			}
+
+		};
+		
+		// Run the show!
+		filterList.init();
+		
+		
+	});	
+	</script>
+</head>
+<body>
+<!--start header-->
+<div class="header">
+  <div class="header-top">
+    <div class="container">
+      <div class="logo"> <a href="index.html"><img src="images/logo.png" alt=""/></a> </div>
+      <div class="menu"> <a class="toggleMenu" href="#"><img src="images/nav_icon.png" alt="" /></a>
+        <ul class="nav" id="nav">
+          <li><a href="#home" class="scroll">Welcome!</a></li>
+          <li><a href="#Events" class="scroll">Events</a></li>
+          <li><a href="#Initiatives" class="scroll">Initiative</a></li>
+          <li><a href="#GuestLectures" class="scroll">Guest Lectures</a></li>
+          <li><a href="#" class="scroll">Partnership</a></li>
+          <li><a href="#" class="scroll">organising committee</a></li>
+          <li><a href="#contact" class="scroll">Contact</a></li>
+          <div class="clear"></div>
+        </ul>
+      </div>
+      <div class="clear"></div>
+      <script type="text/javascript" src="js/responsive-nav.js"></script>
+      <script type="text/javascript" src="js/move-top.js"></script>
+      <script type="text/javascript" src="js/easing.js"></script>
+      <script type="text/javascript">
+					jQuery(document).ready(function($) {
+						$(".scroll").click(function(event){		
+							event.preventDefault();
+							$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+						});
+					});
+				</script>
+    </div>
+  </div>
+  <div class="header-bottom" id="home">
+    <h1>Welcome to Esparx2k16</h1>
+    <div class="welcome"></div>
+    <div class="buttons-box"> <a class="btn btn-f-default smoothanchor" href="#contact">Login</a> <a href="#contact" class="btn btn-f-default">Register</a> </div>
+  </div>
+</div>
+<!--end header-->
+<div class="testimonials">
+  <div class="container">
+    <div class="col-md-4" > <img src="images/home_img.jpg"  class="img-responsive"> </div>
+    <div class="col-md-8" >
+    
+    <marquee bgcolor="#f1f1f1" scrollamount="2" direction="up" loop="true" style="text-align:left;"> <center> <font color="#000">
+    Pay the regitration fee and participate in anything! <span style="color:#F00;">(*Conditions apply)</span><br><br><br>
+    You're most welcome to the Roboshow!  <br><br>
+   Nothing can substitute the experience... The entrepreneurial session would help build your career<br><br><br>
+     Do you know everything about yourself? A psychologist says you do not!Meet the great Personality<br><br>
+     We are striving not to make it successful...We are striving to make it memorable<br><br>
+     
+     </font></center></marquee>
+      
+    </div>
+  </div>
+</div>
+<!--start Events-->
+<div class="Portfolio1" id="Events">
+  <div class="container">
+    <div class="portfolio_top">
+      <div class="portfolio_left">
+        <h3 class="m_5">Events</h3>
+        <div class="m_6"><span class="portfolio_line"> </span></div>
+      </div>
+      <ul id="filters" class="clearfix">
+        <!--   <li><span class="filter active" data-filter="Classify Workshops Coding Projects Robo Circuitrix">All</span></li>-->
+        <li><span class="filter" data-filter="Presentation">Presentation</span></li>
+        <li><span class="filter" data-filter="Workshops">Workshops</span></li>
+        <li><span class="filter" data-filter="Coding">Learn Coding</span></li>
+        <li><span class="filter" data-filter="Robo">Robo Display</span></li>
+        <li><span class="filter" data-filter="Projects">Projects</span></li>
+        <li><span class="filter" data-filter="Circuitrix">Circuitrix</span></li>
+        <li><span class="filter" data-filter="GuestLectures">Guest Lectures</span></li>
+      </ul>
+      <div class="clear"></div>
+    </div>
+    <div id="portfoliolist">
+      <div class="portfolio Presentation mix_all active" data-cat="Presentation" style="display: inline-block; opacity: 1;">
+        <div class="portfolio-wrapper"> <a  class="b-link-stripe b-animate-go  thickbox" data-toggle="modal" data-target="#myModalPresentation" > <img src="images/PaperPresentation.jpg" />
+          <div class="b-wrapper">
+            <h2 class="b-animate b-from-left    b-delay03 "><img src="images/plus.png" alt=""/></h2>
+          </div>
+          </a> </div>
+      </div>
+      <div class="portfolio Presentation mix_all" data-cat="Presentation" style="display: inline-block; opacity: 1;">
+        <div class="portfolio-wrapper"> <a href="#" class="b-link-stripe b-animate-go  thickbox" data-toggle="modal" data-target="#myModalPresentation2"> <img src="images/yourposter.jpg" />
+          <div class="b-wrapper">
+            <h2 class="b-animate b-from-left    b-delay03 "><img src="images/plus.png" alt=""/></h2>
+          </div>
+          </a> </div>
+      </div>
+      <div class="portfolio Workshops mix_all" data-cat="Workshops" style="display: inline-block; opacity: 1;">
+        <div class="portfolio-wrapper"> <a href="#" class="b-link-stripe b-animate-go  thickbox" data-toggle="modal" data-target="#myModalWorkshops"> <img src="images/PCBdesign.jpg" />
+          <div class="b-wrapper">
+            <h2 class="b-animate b-from-left    b-delay03 "><img src="images/plus.png" alt=""/></h2>
+            <p>
+            <ul>
+              <li>team: 4 members</li>
+              <li>take away kit</li>
+              <li>Fee: </li>
+            </ul>
+            </p>
+          </div>
+          </a> </div>
+      </div>
+      <div class="portfolio Workshops mix_all" data-cat="Workshops" style="display: inline-block; opacity: 1;">
+        <div class="portfolio-wrapper"> <a href="#" class="b-link-stripe b-animate-go  thickbox"> <img src="images/SixthSense.jpg" />
+          <div class="b-wrapper">
+            <h2 class="b-animate b-from-left    b-delay03 "><img src="images/plus.png" alt=""/></h2>
+            <p>
+            <ul>
+              <li>team: 4 members</li>
+              <li>take away kit</li>
+              <li>Fee: </li>
+            </ul>
+            </p>
+          </div>
+          </a> </div>
+      </div>
+      <div class="portfolio Workshops mix_all" data-cat="Workshops" style="display: inline-block; opacity: 1;">
+        <div class="portfolio-wrapper"> <a href="#" class="b-link-stripe b-animate-go  thickbox"> <img src="images/IOT.jpg" />
+          <div class="b-wrapper">
+            <h2 class="b-animate b-from-left    b-delay03 "><img src="images/plus.png" alt=""/></h2>
+            <p>
+            <ul>
+              <li>team: 4 members</li>
+              <li>take away kit</li>
+              <li>Fee: </li>
+            </ul>
+            </p>
+          </div>
+          </a> </div>
+      </div>
+      <div class="portfolio Coding mix_all" data-cat="Coding" style="display: inline-block; opacity: 1;">
+        <div class="portfolio-wrapper"> <a href="#" class="b-link-stripe b-animate-go  thickbox" data-toggle="modal" data-target="#myModalCoding"> <img src="images/Codingworkshop.jpg" />
+          <div class="b-wrapper">
+            <h2 class="b-animate b-from-left    b-delay03 "><img src="images/plus.png" alt=""/></h2>
+            <h4> Welcome to Coding Workshop!</h4>
+          </div>
+          </a> </div>
+      </div>
+      <div class="portfolio Projects mix_all" data-cat="Projects" style="display: inline-block; opacity: 1;">
+        <div class="portfolio-wrapper"> <a href="#" class="b-link-stripe b-animate-go  thickbox" data-toggle="modal" data-target="#myModalProjects"> <img src="images/Projects.jpg" />
+          <div class="b-wrapper">
+            <h2 class="b-animate b-from-left    b-delay03 "><img src="images/plus.png" alt=""/></h2>
+          </div>
+          </a> </div>
+      </div>
+      <div class="portfolio Robo mix_all" data-cat="Robo" style="display: inline-block; opacity: 1;">
+        <div class="portfolio-wrapper"> <a href="#" class="b-link-stripe b-animate-go  thickbox" data-toggle="modal" data-target="#myModalRobo"> <img src="images/RoboDisplay.jpg" />
+          <div class="b-wrapper">
+            <h2 class="b-animate b-from-left    b-delay03 "><img src="images/plus.png" alt=""/></h2>
+            <h2> Will be updated soon</h2>
+          </div>
+          </a> </div>
+      </div>
+      <div class="portfolio Circuitrix mix_all" data-cat="Circuitrix" style="display: inline-block; opacity: 1;">
+        <div class="portfolio-wrapper"> <a href="#" class="b-link-stripe b-animate-go  thickbox" data-toggle="modal" data-target="#myModalCircuitrix"> <img src="images/Circuitrix.jpg" />
+          <div class="b-wrapper">
+            <h2 class="b-animate b-from-left    b-delay03 "><img src="images/plus.png" alt=""/></h2>
+          </div>
+          </a> </div>
+      </div>
+      
+      
+      <div class="portfolio GuestLectures mix_all" data-cat="GuestLectures" style="display: inline-block; opacity: 1;">
+        <div class="portfolio-wrapper"> <a href="#" class="b-link-stripe b-animate-go  thickbox" data-toggle="modal" data-target="#myModalGuestLectures"> <img src="images/GuestLectures.jpg" />
+          <div class="b-wrapper">
+            <h2 class="b-animate b-from-left    b-delay03 "><img src="images/plus.png" alt=""/></h2>
+          </div>
+          </a> </div>
+      </div>
+    </div>
+  </div>
+  <!-- container -->
+</div>
+<!--end Events-->
+<!--start Initiatives-->
+<div class="default" id="Initiatives">
+  <div class="container">
+    <div class="row">
+      <!--<h3 class="m_21">Initiatives</h3>
+        <div class="m_22"><span class="default_line"> </span></div>-->
+      <div class="col-md-6  video_player">
+        <h3 class="m_21">Save Power, Save Earth</h3>
+        <div class="m_22"><span class="default_line"> </span></div>
+        <iframe src="https://player.vimeo.com/video/1785993?color=ffffff" width="100%" height="350" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        <p><a href="http://vimeo.com/1785993"></a> <a href="http://vimeo.com/keithloutit"></a> <a href="https://vimeo.com"></a>.</p>
+      </div>
+      <div class="col-md-6 video_player">
+        <h3 class="m_21">Go green, keep clean</h3>
+        <div class="m_22"><span class="default_line"> </span></div>
+         <iframe  width="100%" height="350" src="https://www.youtube.com/embed/g9TAF9cHxxc" frameborder="0" allowfullscreen></iframe>
+ 
+      </div>
+    </div>
+  </div>
+</div>
+<!--end Initiatives-->
+<!--start GuestLectures-->
+<div class="twitter" id="GuestLectures">
+  <div class="container">
+    <div class="twitter_left">
+      <h3 class="m_21">Guest Lectures:</h3>
+      <div class="m_22"><span class="default_line"> </span></div>
+    </div>
+    <div class="clear"></div>
+    <p class="m_9">Surprise Guests are gonna deliver a lecture on entrepreneurship Lecture on Entrepreneurship... You're Welcome to the Q&A session  An interactive session by a psychologist </p>
+  </div>
+</div>
+<!--end GuestLectures-->
+<!--start testimonials-->
+<div class="testimonials">
+  <div class="container">
+    <div class="portfolio_left">
+      <h3 class="m_5">Testimonials</h3>
+      <div class="m_6"><span class="portfolio_line"> </span></div>
+    </div>
+    <i class="quotation"> </i>
+    <div class="clear"> </div>
+    <p class="m_12">aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit</p>
+    <span class="m_13">-Person Name</span> </div>
+</div>
+<!--end testimonials-->
+<!--start contact-->
+<div class="contact" id="contact">
+  <div class="container">
+    <div class="row">
+      <h3 class="m_3">Contact</h3>
+      <div class="m_4"><span class="bottom_line"> </span></div>
+      <form method="post" action="contact-post.html">
+        <div class="col-md-6 commentform">
+          <p class="comment-form-author">
+            <label for="author">Name</label>
+            <input id="author" name="author" type="text" value="" size="30" aria-required="true">
+          </p>
+          <p>
+            <label for="author">Email</label>
+            <input id="author" name="author" type="text" value="" size="30" aria-required="true">
+          </p>
+        </div>
+        <div class="col-md-6 commentform_desc">
+          <!--<p class="m_13">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea.</p>-->
+          <div class="address">
+            <p>Esparx2k16,</p>
+            <p>Phone:(00) 222 666 444</p>
+            <p>Fax: (000) 000 00 00 0</p>
+            <p>Email: <span>support[at]Esparx2k16.com</span></p>
+            <p>Follow on: <span>Facebook</span>, <span>Twitter</span></p>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="contactform_bottom"> <span>
+          <label>Subject</label>
+          </span> <span>
+          <textarea name="userMsg"> </textarea>
+          </span>
+          <input name="submit" type="submit" id="submit" value="Message">
+        </div>
+        <!--<div class="col-md-6 commentform_desc1">
+          <p class="m_13">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea.</p>
+          <div class="address">
+            <p>500 Lorem Ipsum Dolor Sit,</p>
+            <p>Phone:(00) 222 666 444</p>
+            <p>Fax: (000) 000 00 00 0</p>
+            <p>Email: <span>support[at]snow.com</span></p>
+            <p>Follow on: <span>Facebook</span>, <span>Twitter</span></p>
+          </div>
+        </div>-->
+      </form>
+    </div>
+  </div>
+</div>
+<div class="footer-bottom">
+  <div class="container">
+    <ul class="footer-nav">
+      <li><a href="#">Home</a></li>
+      |
+      <li><a href="#">Events</a></li>
+      |
+      <li><a href="#">Initiative</a></li>
+      |
+      <li><a href="#">Guest Lectures</a></li>
+    </ul>
+    <div class="copy">
+      <p>© 2015 Esparx2k16 All rights reserved. || Website Design by <a href="http://www.yoursdigitalexpo.com/" target="_blank">Digital Expo</a></p>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<!-- Modal Paper Presentation-->
+<div class="modal fade" id="myModalPresentation" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Paper Presentation</h4>
+      </div>
+      
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <!-- <li><a data-toggle="tab" href="#home">Home</a></li>-->
+          <li  class="active"><a data-toggle="tab" href="#Presentationmenu1">About Us</a></li>
+          <li><a data-toggle="tab" href="#Presentationmenu2">Rules</a></li>
+          <li><a data-toggle="tab" href="#Presentationmenu3">Fee details </a></li>
+          <li><a data-toggle="tab" href="#Presentationmenu4">Contact Us</a></li>
+        </ul>
+        <div class="tab-content">
+          <!--<div id="home" class="tab-pane fade in active">
+    
+ 
+      <p><img src="images/Circuitrix.jpg" class="img-responsive"></p>
+    </div>-->
+          <div id="Presentationmenu1" class="tab-pane fade in active">
+            <hr>
+            <h3>Important points to note</h3>
+              <p>Paper has to be from the following streams:</p>
+        <ol type="1">
+          <li>VLSI and NANO Technology</li>
+          <li>Antennas and Microwave</li>
+          <li>Signal and Image Processing</li>
+          <li> Wireless and Mobile Communications</li>
+          <li> Embedded System</li>
+          <li> Satellite and Optical Communications</li>
+        </ol>
+       
+          </div>
+          <div id="Presentationmenu2" class="tab-pane fade">
+            <hr>
+            <h3>Rules</h3>
+          <ol type="1">
+          <li>A team has a maximum of 2 persons.</li>
+          <li>The paper should be in "pdf" or "doc" format</li>
+          <li>Signal and Image Processing</li>
+          <li> Team should bring 3 Hard copies of paper and soft copy of ppt in a pen drive or CD.</li>
+          <li> Time duration is 7+2 min including queries.</li>
+          <li> Paper should contain max of 8 pages and should strictly follow standard IEEE two-column format.Download the sample file Here</li>
+          <li>Last Date for submission of papers is 17/02/2015</li>
+        </ol>
+          </div>
+          <div id="Presentationmenu3" class="tab-pane fade">
+            <hr>
+            <h3>Will be updated soon</h3>
+          </div>
+          <div id="Presentationmenu4" class="tab-pane fade">
+            <hr>
+            <h3>Contact</h3>
+            <div class="address" style="background:#ff9900; padding:5px;">
+              <p><b>Chilaka Vinay Kumar</b> | Phone:+91-7396556654</p>
+              <p>Bojja Chaitanya Krishna | Phone:+91-7396556654</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+    </div>
+  </div>
+</div>
+<!-- /.modal Paper Presentation-->
+<!-- Modal Poster Presentation-->
+<div class="modal fade" id="myModalPresentation2" role="dialog">
+  <div class="modal-dialog modal-lg">
+  
+  <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Poster Presentation</h4>
+      </div>
+      
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <!-- <li><a data-toggle="tab" href="#home">Home</a></li>-->
+          <li  class="active"><a data-toggle="tab" href="#myModalPaper1">About Us</a></li>
+          <li><a data-toggle="tab" href="#myModalPaper2">Rules</a></li>
+          <li><a data-toggle="tab" href="#myModalPaper3">Fee details </a></li>
+          <li><a data-toggle="tab" href="#myModalPaper4">Contact Us</a></li>
+        </ul>
+        <div class="tab-content">
+          <!--<div id="home" class="tab-pane fade in active">
+    
+ 
+      <p><img src="images/Circuitrix.jpg" class="img-responsive"></p>
+    </div>-->
+          <div id="myModalPaper1" class="tab-pane fade in active">
+            <hr>
+            <h3>Important points to note</h3>
+                <p>Paper has to be from the following streams:</p>
+        <ol type="1">
+          <li>VLSI and NANO Technology</li>
+          <li>Antennas and Microwave</li>
+          <li>Signal and Image Processing</li>
+          <li> Wireless and Mobile Communications</li>
+          <li> Embedded System</li>
+          <li> Satellite and Optical Communications</li>
+        </ol>
+        <hr>
+        <h4>rules</h4>
+        <ol type="1">
+          <li>A team has a maximum of 2 persons.</li>
+          <li>The paper should be in "pdf" or "doc" format</li>
+          <li>Signal and Image Processing</li>
+          <li> Team should bring 3 Hard copies of paper and soft copy of ppt in a pen drive or CD.</li>
+          <li> Time duration is 7+2 min including queries.</li>
+          <li> Paper should contain max of 8 pages and should strictly follow standard IEEE two-column format.Download the sample file Here</li>
+          <li>Last Date for submission of papers is 17/02/2015</li>
+        </ol>
+          </div>
+          <div id="myModalPaper2" class="tab-pane fade">
+            <hr>
+            <h3>Rules</h3>
+            Will be updated soon
+          </div>
+          <div id="myModalPaper3" class="tab-pane fade">
+            <hr>
+            <h3>Will be updated soon</h3>
+          </div>
+          <div id="myModalPaper4" class="tab-pane fade">
+            <hr>
+            <h3>Contact</h3>
+            <div class="address" style="background:#ff9900; padding:5px;">
+              <p><b>Chilaka Vinay Kumar</b> | Phone:+91-7396556654</p>
+              <p>Bojja Chaitanya Krishna | Phone:+91-7396556654</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+    </div>
+    
+  </div>
+</div>
+<!-- /.modal Poster Presentation-->
+<!-- Modal PCB -->
+<div class="modal fade" id="myModalWorkshops" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">WORKSHOP</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <!-- <li><a data-toggle="tab" href="#home">Home</a></li>-->
+          <li  class="active"><a data-toggle="tab" href="#PCBmenu1">About Us</a></li>
+          <li><a data-toggle="tab" href="#PCBmenu2">Rules</a></li>
+          <li><a data-toggle="tab" href="#PCBmenu3">Fee details </a></li>
+          <li><a data-toggle="tab" href="#PCBmenu4">Contact Us</a></li>
+        </ul>
+        <div class="tab-content">
+          <!--<div id="home" class="tab-pane fade in active">
+    
+ 
+      <p><img src="images/Circuitrix.jpg" class="img-responsive"></p>
+    </div>-->
+          <div id="PCBmenu1" class="tab-pane fade in active">
+            <hr>
+            <p>This workshop aims to design the layout of an electronic circuit, using open source KiCAD PCB design software, with various active and passive components such as regulators, diodes, resistors, capacitors, inductors, switches, transformers, etc. </p>
+          </div>
+          <div id="PCBmenu2" class="tab-pane fade">
+            <hr>
+            <h3>Rules</h3>
+            <h4>IN THIS WORKSHOP YOU WILL LEARN:</h4>
+            <ol>
+              <li>Basic PCB concepts.</li>
+              <li>Drawing the schematic</li>
+              <li>Editing and routing.</li>
+              <li>Creation of a library, Components.</li>
+              <li>Report generation.</li>
+              <li>Manufacturing of the circuit engraved PCB.</li>
+              <li>Training outcome: Participates will be certified on successful completion of the workshop.</li>
+            </ol>
+          </div>
+          <div id="PCBmenu3" class="tab-pane fade">
+            <hr>
+            <h3>Fee details</h3>
+            <p>Will be updated soon</p>
+          </div>
+          <div id="PCBmenu4" class="tab-pane fade">
+            <hr>
+            <h3>Contact</h3>
+            <p>Will be updated soon</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal PCB-->
+<!-- Modal Learn coding -->
+<div class="modal fade" id="myModalCoding" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Learn coding</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <!-- <li><a data-toggle="tab" href="#home">Home</a></li>-->
+          <li  class="active"><a data-toggle="tab" href="#Coding1">About Us</a></li>
+          <li><a data-toggle="tab" href="#Coding2">Contact Coding team</a></li>
+          <li><a data-toggle="tab" href="#Coding3">Fee details </a></li>
+          <!-- <li><a data-toggle="tab" href="#menu4">Contact Us</a></li>-->
+        </ul>
+        <div class="tab-content">
+          <!--<div id="home" class="tab-pane fade in active">
+    
+ 
+      <p><img src="images/Circuitrix.jpg" class="img-responsive"></p>
+    </div>-->
+          <div id="Coding1" class="tab-pane fade in active">
+            <hr>
+            <p>Too much concerned about hardware? many of the companies care about software as well
+              We teach you how to program and give an opportunity to compete. 
+              Welcome to Coding Workshop! </p>
+          </div>
+          <div id="Coding2" class="tab-pane fade">
+            <hr>
+            <h3>Contact Coding team</h3>
+            <p>Will be updated soon</p>
+          </div>
+          <div id="Coding3" class="tab-pane fade">
+            <hr>
+            <h3>Fee details</h3>
+            <p>Will be updated soon</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal Learn coding-->
+
+
+<!-- Modal Robo Display -->
+<div class="modal fade" id="myModalRobo" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Robo Display</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <!-- <li><a data-toggle="tab" href="#home">Home</a></li>-->
+          <li  class="active"><a data-toggle="tab" href="#Robo1">About Us</a></li>
+          <li><a data-toggle="tab" href="#Robo2">Rules</a></li>
+          <li><a data-toggle="tab" href="#Robo3">Fee details </a></li>
+          <li><a data-toggle="tab" href="#Robo4">Contact Us</a></li>
+        </ul>
+        <div class="tab-content">
+          <!--<div id="home" class="tab-pane fade in active">
+    
+ 
+      <p><img src="images/Circuitrix.jpg" class="img-responsive"></p>
+    </div>-->
+          <div id="Robo1" class="tab-pane fade in active">
+            <hr>
+            <h3>Important points to note</h3>
+            <p style="white-space: break-word;">Circuitrix, as the name suggests is a event designed to test your mettle in the field of electronics, definitely a platform for all the electronics enthusiasts to exhibit their skills against the best of the best in this specialization. This event gives you the opportunity to show case your skills at designing and implementing electronic circuits, using simulation softwares (multisim or pspice).All your require to do is to brush up your concepts and get ready to unleash your designing skills.</p>
+          </div>
+          <div id="Robo2" class="tab-pane fade">
+            <hr>
+            <h3>Rules</h3>
+            <p>The event raises two rounds</p>
+            <p>The Team should have a maximum of two participants.</p>
+            <hr>
+            <h4>First Round:</h4>
+            <ol>
+              <li>This round is an aptitude test on the fundamentals of digital and analog electronics.</li>
+              <li>Selected teams from this round will proceed to next round.</li>
+            </ol>
+            <hr>
+            <h4>Second Round:</h4>
+            <ol>
+              <li>In this round, participants will be tested on their simulation Skills. Some Specifications are given which they need to generate and simulate using any one of the software (Multisim or Pspice). Whatever participants are comfortable with.</li>
+              <li>The accuracy and approach in building the circuit is tested.</li>
+              <li>Based on the performance, the best two teams will be awarded first and second position.</li>
+              <li>There is no negative marking in Round-1. Evaluation is based on the number of questions answered correctly.</li>
+              <li>Round-2 is judged based on efficiency of the output and time to simulate the best possible circuits.</li>
+            </ol>
+          </div>
+          <div id="Robo3" class="tab-pane fade">
+            <hr>
+            <h3>Will be updated soon</h3>
+          </div>
+          <div id="Robo4" class="tab-pane fade">
+            <hr>
+            <h3>Contact</h3>
+            <div class="address" style="background:#ff9900; padding:5px;">
+              <p><b>Chilaka Vinay Kumar</b> | Phone:+91-7396556654</p>
+              <p>Bojja Chaitanya Krishna | Phone:+91-7396556654</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal Robo Display-->
+
+
+<!-- Modal project -->
+<div class="modal fade" id="myModalProjects" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Projects</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <!-- <li><a data-toggle="tab" href="#home">Home</a></li>-->
+          <li  class="active"><a data-toggle="tab" href="#Projects1">About Us</a></li>
+          <li><a data-toggle="tab" href="#Projects2">Rules</a></li>
+          <li><a data-toggle="tab" href="#Projects3">Fee details </a></li>
+          <li><a data-toggle="tab" href="#Projects4">Contact Us</a></li>
+        </ul>
+        <div class="tab-content">
+          <!--<div id="home" class="tab-pane fade in active">
+    
+ 
+      <p><img src="images/Circuitrix.jpg" class="img-responsive"></p>
+    </div>-->
+          <div id="Projects1" class="tab-pane fade in active">
+            <hr>
+            <h3>Important points to note</h3>
+            <ol type="1">
+              <li>Participants need to provide a detailed description of project/module in the form of paper in IEEE format in the abstract</li>
+              <li>The Abstract file should be uploaded in the "pdf" or "doc" format and less than 300kb</li>
+              <li>A Project team can have a maximum of 4 persons.</li>
+              <li>The team must be accompanied with their respective Project/model and a hard copy of abstract on the day of the event.</li>
+              <li>Abstract should contain max of 8 pages and should strictly follow standard IEEE two-column format.Download the sample file Here</li>
+              <li>Last Date for submission of abstracts is 21/02/2015</li>
+            </ol>
+          </div>
+          <div id="Projects2" class="tab-pane fade">
+            <hr>
+            <h3>Rules</h3>
+            <p>The event raises two rounds</p>
+            <p>The Team should have a maximum of two participants.</p>
+            <hr>
+            <h4>First Round:</h4>
+            <ol>
+              <li>This round is an aptitude test on the fundamentals of digital and analog electronics.</li>
+              <li>Selected teams from this round will proceed to next round.</li>
+            </ol>
+            <hr>
+            <h4>Second Round:</h4>
+            <ol>
+              <li>In this round, participants will be tested on their simulation Skills. Some Specifications are given which they need to generate and simulate using any one of the software (Multisim or Pspice). Whatever participants are comfortable with.</li>
+              <li>The accuracy and approach in building the circuit is tested.</li>
+              <li>Based on the performance, the best two teams will be awarded first and second position.</li>
+              <li>There is no negative marking in Round-1. Evaluation is based on the number of questions answered correctly.</li>
+              <li>Round-2 is judged based on efficiency of the output and time to simulate the best possible circuits.</li>
+            </ol>
+          </div>
+          <div id="Projects3" class="tab-pane fade">
+            <hr>
+            <h3>Will be updated soon</h3>
+          </div>
+          <div id="Projects4" class="tab-pane fade">
+            <hr>
+            <h3>Contact</h3>
+            <div class="address" style="background:#ff9900; padding:5px;">
+              <p><b>Chilaka Vinay Kumar</b> | Phone:+91-7396556654</p>
+              <p>Bojja Chaitanya Krishna | Phone:+91-7396556654</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal project-->
+<!-- Modal Circuitrix -->
+<div class="modal fade" id="myModalCircuitrix" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">CIRCUITRIX</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <!-- <li><a data-toggle="tab" href="#home">Home</a></li>-->
+          <li  class="active"><a data-toggle="tab" href="#Circuitrix1">About Us</a></li>
+          <li><a data-toggle="tab" href="#Circuitrix2">Rules</a></li>
+          <li><a data-toggle="tab" href="#Circuitrix3">Fee details </a></li>
+          <li><a data-toggle="tab" href="#Circuitrix4">Contact Us</a></li>
+        </ul>
+        <div class="tab-content">
+          <!--<div id="home" class="tab-pane fade in active">
+    
+ 
+      <p><img src="images/Circuitrix.jpg" class="img-responsive"></p>
+    </div>-->
+          <div id="Circuitrix1" class="tab-pane fade in active">
+            <hr>
+            <h3>Important points to note</h3>
+            <p style="white-space: break-word;">Circuitrix, as the name suggests is a event designed to test your mettle in the field of electronics, definitely a platform for all the electronics enthusiasts to exhibit their skills against the best of the best in this specialization. This event gives you the opportunity to show case your skills at designing and implementing electronic circuits, using simulation softwares (multisim or pspice).All your require to do is to brush up your concepts and get ready to unleash your designing skills.</p>
+          </div>
+          <div id="Circuitrix2" class="tab-pane fade">
+            <hr>
+            <h3>Rules</h3>
+            <p>The event raises two rounds</p>
+            <p>The Team should have a maximum of two participants.</p>
+            <hr>
+            <h4>First Round:</h4>
+            <ol>
+              <li>This round is an aptitude test on the fundamentals of digital and analog electronics.</li>
+              <li>Selected teams from this round will proceed to next round.</li>
+            </ol>
+            <hr>
+            <h4>Second Round:</h4>
+            <ol>
+              <li>In this round, participants will be tested on their simulation Skills. Some Specifications are given which they need to generate and simulate using any one of the software (Multisim or Pspice). Whatever participants are comfortable with.</li>
+              <li>The accuracy and approach in building the circuit is tested.</li>
+              <li>Based on the performance, the best two teams will be awarded first and second position.</li>
+              <li>There is no negative marking in Round-1. Evaluation is based on the number of questions answered correctly.</li>
+              <li>Round-2 is judged based on efficiency of the output and time to simulate the best possible circuits.</li>
+            </ol>
+          </div>
+          <div id="Circuitrix3" class="tab-pane fade">
+            <hr>
+            <h3>Will be updated soon</h3>
+          </div>
+          <div id="Circuitrix4" class="tab-pane fade">
+            <hr>
+            <h3>Contact</h3>
+            <div class="address" style="background:#ff9900; padding:5px;">
+              <p><b>Chilaka Vinay Kumar</b> | Phone:+91-7396556654</p>
+              <p>Bojja Chaitanya Krishna | Phone:+91-7396556654</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal Circuitrix-->
+
+
+<!-- Modal GuestLectures -->
+<div class="modal fade" id="myModalGuestLectures" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Guest Lectures</h4>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs">
+          <!-- <li><a data-toggle="tab" href="#home">Home</a></li>-->
+          <li  class="active"><a data-toggle="tab" href="#GuestLectures1">About Us</a></li>
+          <li><a data-toggle="tab" href="#GuestLectures2">Rules</a></li>
+          <li><a data-toggle="tab" href="#GuestLectures3">Fee details </a></li>
+          <li><a data-toggle="tab" href="#GuestLectures4">Contact Us</a></li>
+        </ul>
+        <div class="tab-content">
+          <!--<div id="home" class="tab-pane fade in active">
+    
+ 
+      <p><img src="images/Circuitrix.jpg" class="img-responsive"></p>
+    </div>-->
+          <div id="GuestLectures1" class="tab-pane fade in active">
+            <hr>
+            <h3>We will surprise you soon</h3>
+            
+          </div>
+          <div id="GuestLectures2" class="tab-pane fade">
+            <hr>
+            <h3>Rules</h3>
+            <p>We will surprise you soon</p>
+            
+          </div>
+          <div id="GuestLectures3" class="tab-pane fade">
+            <hr>
+            <h3>Will be updated soon</h3>
+          </div>
+          <div id="GuestLectures4" class="tab-pane fade">
+            <hr>
+            <h3>Contact</h3>
+            <div class="address" style="background:#ff9900; padding:5px;">
+              <p><b>Chilaka Vinay Kumar</b> | Phone:+91-7396556654</p>
+              <p>Bojja Chaitanya Krishna | Phone:+91-7396556654</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal GuestLectures-->
+
+
+
+
+
+<!--end contact-->
+<script type="text/javascript">
+			$(document).ready(function() {
+			
+				var defaults = {
+		  			containerID: 'toTop', // fading element id
+					containerHoverID: 'toTopHover', // fading element hover id
+					scrollSpeed: 1200,
+					easingType: 'linear' 
+		 		};
+				
+				
+				$().UItoTop({ easingType: 'easeOutQuart' });
+				
+			});
+		</script>
+<a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+</body>
+</html>

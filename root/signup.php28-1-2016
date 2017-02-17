@@ -1,0 +1,207 @@
+<?php
+// Ajax calls this REGISTRATION code to execute
+if(isset($_POST["f"])){
+	// CONNECT TO THE DATABASE
+	include("php_includes/connect.php");
+	// GATHER THE POSTED DATA INTO LOCAL VARIABLES
+	$f = preg_replace('#[^a-z0-9]#i', '', $_POST['f']);
+	$l = preg_replace('#[^a-z0-9]#i', '', $_POST['l']);
+	$e = mysqli_real_escape_string($db_conx, $_POST['e']);
+	$p1 = $_POST['p1'];
+    $p = preg_replace('#[^0-9]#', '', $_POST['p']);
+	$c = preg_replace('#[^a-z]#i', '', $_POST['c']);
+	$s = preg_replace('#[^a-z]#', '', $_POST['s']);
+	$y = preg_replace('#[^0-9]#i', '', $_POST['y']);
+	// GET USER IP ADDRESS
+  $ip = preg_replace('#[^0-9.]#', '', getenv('REMOTE_ADDR'));
+	// DUPLICATE DATA CHECKS FOR USERNAME AND EMAIL
+	//$sql = "SELECT id FROM users WHERE username='$u' LIMIT 1";
+    //$query = mysqli_query($db_conx, $sql); 
+	//$u_check = mysqli_num_rows($query);
+	// -------------------------------------------
+	$sql = "SELECT id FROM users WHERE email='$e' LIMIT 1";
+    $query = mysqli_query($db_conx, $sql); 
+	$e_check = mysqli_num_rows($query);
+	/*if($f == "" || $l == "" || $e == "" || $p1 == "" || $p == "" || $c == "" ||$s == "" ||$y == ""){
+		echo "The form submission is missing values.";
+        exit();
+	
+	}else*/ if ($e_check > 0){ 
+        echo "That email address is already in use in the system";
+        exit();
+		 } else if (is_numeric($f[0])) {
+        echo 'firstname cannot begin with a number';
+        exit();
+	
+    } else if (is_numeric($l[0])) {
+        echo 'lastname cannot begin with a number';
+        exit();
+		} else {
+	// END FORM DATA ERROR HANDLING
+	    // Begin Insertion of data into the database
+			$p_hash = md5($_POST['p1']);
+		// Add user info into the database table for the main site table
+		$sql = "INSERT INTO users (fname, lname, email, password, phone, sex, college, year, ip, signup, lastlogin)       
+		        VALUES('$f','$l','$e','$p_hash','$p','$s','$c','$y','$ip',now(),now() )";
+		$query = mysqli_query($db_conx, $sql); 
+		$uid = mysqli_insert_id($db_conx);
+		// Establish their row in the useroptions table
+		$sql = "INSERT INTO useroptions (id,fname,lname,background) VALUES ('$uid','$f','$l','original')";
+		$query = mysqli_query($db_conx, $sql);
+		 //Create directory(folder) to hold each user's files(pics, MP3s, etc.)
+		if (!file_exists("id/$uid")) {
+			mkdir("id/$uid", 0755);
+		}
+		// Email the user their activation link
+		$to = "$e";							 
+		$from = "info@esparx2k16.com";
+		$subject = 'Esparx2k16 Account Activation';
+		$message = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Esparx2K16 Message</title></head><body style="margin:0px; font-family:Tahoma, Geneva, sans-serif;"><div style="padding:10px; background:#333; font-size:24px; color:#CCC;">Esparx2K16 Account Activation</div><div style="padding:24px; font-size:17px;">Hello '.$f.',<br /><br/>Click the link below to pay the registration fee:<br/><br/><a href="http://www.esparx2k16.com/root/activation.php?id='.$uid.'&f='.$f.'&e='.$e.'&p1='.$p_hash.'">Pay 200 INR now!</a><br /><br />After you receive the payment confirmation to your email, you can successfully login using your<br /> E-mail Address: <b>'.$e.'</b><br><br>please write to<u>info@esparx2k16.com</u> if you experience any technical difficulties.</div></body></html>';
+		$headers = "From: $from\n";
+        $headers .= "MIME-Version: 1.0\n";
+        $headers .= "Content-type: text/html; charset=iso-8859-1\n";
+		mail($to, $subject, $message, $headers);
+		echo "signup_success";
+		exit();
+	}
+	exit();
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sign Up</title>
+
+<style type="text/css">
+#signupform{
+	margin-top:24px;
+		
+}
+#signupform > div {
+	margin-top: 12px;
+	
+}
+#signupform > input,select {
+	width: 200px;
+	padding: 3px;
+	background: #ffffff;
+}
+#signupbtn {
+	font-size:18px;
+	padding: 12px;
+}
+#pageMiddle{
+background:#ffffff;
+    width: 500px;
+	margin: 0px auto;
+	height: 700px;
+	
+	}
+
+</style>
+<script src="js/main.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/scroll.js"></script>
+<script>
+function restrict(elem){
+	var tf = _(elem);
+	var rx = new RegExp;
+	if(elem == "email"){
+		rx = /[' "]/gi;
+	} else if(elem == "phone"){
+		rx = /[^0-9]/gi;
+	}
+	tf.value = tf.value.replace(rx, "");
+}
+function emptyElement(x){
+	_(x).innerHTML = "";
+}
+
+function signup(){
+	var f = _("fname").value;
+	var l = _("lname").value;
+	var e = _("email").value;
+	var p1 = _("pass1").value;
+	var p2= _("pass2").value;
+	var p = _("phone").value;
+	var s = _("sex").value;
+	var c = _("college").value;
+	var y = _("year").value;
+	var status = _("status");
+	if(f == "" || l == "" || e == "" || p1 == ""||p2==""||p==""||s==""|| c == ""|| y==""){
+		status.innerHTML = "Fill out all of the form data";
+	} else if(p1 != p2){
+		status.innerHTML = "Your password fields do not match";
+	}  else {
+		_("signupbtn").style.display = "none";
+		status.innerHTML = 'please wait ...';
+		var ajax = ajaxObj("POST", "signup.php");
+        ajax.onreadystatechange = function() {
+	        if(ajaxReturn(ajax) == true) {
+	            if(ajax.responseText != "signup_success"){
+					status.innerHTML = ajax.responseText;
+					_("signupbtn").style.display = "block";
+				} else {
+					window.scrollTo(0,0);
+					_("signupform").innerHTML = "Thank you very much for registering,<b> "+f+"</b>.<br> <br> You need to pay 200 INR to activate your account. <br><br> Please find the activation link in <u>"+e+"</u> <br><br> If it's not in inbox, please check in <b>spam</b> as well. <br><br> If you do not receive any email, please contact the technical team at<b> info@esparx2k16.com</b>";
+				}
+	        }
+        }
+        ajax.send("f="+f+ " &l="+l+"&e="+e+"&p1="+p1+"&p="+p+"&c="+c+"&s="+s+"&y="+y);
+	}
+}
+/*function openTerms(){
+	_("terms").style.display = "block";
+	emptyElement("status");
+}*/
+/* function addEvents(){
+	_("elemID").addEventListener("click", func, false);
+}
+window.onload = addEvents; */
+</script>
+</head>
+<body>
+
+<div id="pageMiddle">
+  <h2 style="color:#0066FF">Sign Up Here</h2>
+  <form name="signupform" id="signupform" onSubmit="return false;">
+    <div>First Name: </div>
+    <input id="fname" type="text" onFocus="emptyElement('status')"  maxlength="16">
+	 <div>Last Name: </div>
+    <input id="lname" type="text" onFocus="emptyElement('status')"  maxlength="16">
+   
+    <div>Email Address:</div>
+    <input id="email" type="text" onFocus="emptyElement('status')" onKeyUp="restrict('email')" maxlength="88">
+    <div>Create Password:</div>
+    <input id="pass1" type="password" onFocus="emptyElement('status')" maxlength="16">
+    <div>Confirm Password:</div>
+    <input id="pass2" type="password" onFocus="emptyElement('status')" maxlength="16">
+	<div>Phone: </div>
+    <input id="phone" type="int" onFocus="emptyElement('status')" onKeyUp="restrict('phone')" maxlength="10">
+	<div>College: </div>
+    <input id="college" type="text" onFocus="emptyElement('status')"  maxlength="100">
+    <div>Gender:</div>
+	<select id="sex" onFocus="emptyElement('status')">
+      <option value=""></option>
+      <option value="m">Male</option>
+      <option value="f">Female</option>
+    </select>
+    <div>Year:</div>
+    <select id="year" onFocus="emptyElement('status')">
+        <option value=""></option>
+      <option value="1">I-year</option>
+      <option value="2">II-year</option>
+	  <option value="3">III-year</option>
+      <option value="4">IV-year</option>
+    </select>
+   
+   
+    <br /><br />
+    <button id="signupbtn" onClick="signup()">Create Account</button>
+    <span id="status"></span>
+  </form>
+</div>
+
+</body>
+</html>
